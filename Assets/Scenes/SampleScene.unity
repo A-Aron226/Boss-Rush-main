@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2675,6 +2675,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 490ac63192d8d8a46bab14ef61ec69a9, type: 2}
+    - target: {fileID: 242311663392640140, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a412bf93c6f48874088872447c2e25a1, type: 2}
     - target: {fileID: 242311663399911246, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
       propertyPath: m_Name
       value: DragonTerrorBringerMesh

@@ -3,42 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossWalk : MonoBehaviour
+namespace AaronRoeder
 {
-    [SerializeField] Transform player;
-    [SerializeField] float followRange = 20f;
-    [SerializeField] float minRange = 5f;
-    private NavMeshAgent agent;
-    private Animator anim;
-
-
-    private void Start()
+    public class BossWalk : MonoBehaviour
     {
-        agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        float distanceToPlayer = Vector3.Distance(player.position, transform.position); //Getting the distance between the player and the boss
+        [SerializeField] Transform player;
+        [SerializeField] float followRange = 20f;
+        [SerializeField] float minRange = 5f;
+        private NavMeshAgent agent;
+        private Animator anim;
 
-        if (distanceToPlayer <= followRange) //Checking if the player is within the followRange of the boss
+
+        private void Start()
         {
-            agent.SetDestination(player.position);
-            anim.SetBool("isWalking", true);
+            agent = GetComponent<NavMeshAgent>();
+            anim = GetComponent<Animator>();
         }
-
-        else if (distanceToPlayer <= minRange || distanceToPlayer > followRange)
+        // Update is called once per frame
+        void Update()
         {
-            anim.SetBool("isWalking", false);
-            agent.SetDestination(transform.position);
-        }
-        else
-        {
-            anim.SetBool("isWalking", false);
-        }
+            float distanceToPlayer = Vector3.Distance(player.position, transform.position); //Getting the distance between the player and the boss
 
-        anim.SetFloat("speed", agent.velocity.magnitude); //setting boss speed when walking
+            if (distanceToPlayer <= followRange) //Checking if the player is within the followRange of the boss
+            {
+                agent.SetDestination(player.position);
+                anim.SetBool("isWalking", true);
+            }
 
+            else if (distanceToPlayer <= minRange || distanceToPlayer > followRange)
+            {
+                anim.SetBool("isWalking", false);
+                agent.SetDestination(transform.position);
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
+
+            anim.SetFloat("speed", agent.velocity.magnitude); //setting boss speed when walking
+
+        }
     }
 }

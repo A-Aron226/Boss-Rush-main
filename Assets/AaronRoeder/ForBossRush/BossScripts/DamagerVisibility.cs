@@ -24,11 +24,11 @@ public class DamagerVisibility : MonoBehaviour
             {
                 yield return new WaitForSeconds(visibilityTime);
                 visibilityObject.SetActive(true);
-                Debug.Log("visible");
+                //Debug.Log("visible");
 
                 yield return new WaitForSeconds(0.1f);
                 visibilityObject.SetActive(false);
-                Debug.Log("invisible");
+                //Debug.Log("invisible");
             }
 
             yield return null;

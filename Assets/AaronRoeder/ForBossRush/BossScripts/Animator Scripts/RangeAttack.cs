@@ -23,13 +23,11 @@ public class RangeAttack : StateMachineBehaviour
 
         if (playerDistance <= anim.GetFloat("followRange"))
         {
-            anim.SetBool("isWalking", true);
             anim.SetBool("canShoot", false);
         }
 
         else
         {
-            anim.SetBool("isWalking", false);
             anim.SetBool("canShoot", true);
         }
     }

@@ -89,7 +89,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballName: Fireball
   headName: Head
-  fireRate: 1.5
   spawnDelay: 0.5
 --- !u!1102 &-2410349502737471577
 AnimatorState:
@@ -192,7 +191,7 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: followRange
     m_Type: 1
-    m_DefaultFloat: 10
+    m_DefaultFloat: 15
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -266,7 +265,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballName: Fireball
   headName: Head
-  fireRate: 1.5
   spawnDelay: 0.5
 --- !u!1107 &2262197492065185969
 AnimatorStateMachine:
@@ -338,7 +336,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballName: Fireball
   headName: Head
-  fireRate: 1.5
   spawnDelay: 0.5
 --- !u!1102 &3523944232453651067
 AnimatorState:

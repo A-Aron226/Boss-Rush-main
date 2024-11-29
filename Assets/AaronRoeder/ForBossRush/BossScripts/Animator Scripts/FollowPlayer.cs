@@ -22,7 +22,7 @@ public class FollowPlayer : StateMachineBehaviour
     {
         float distanceToPlayer = Vector3.Distance(player.position, animator.transform.position);
 
-        if (distanceToPlayer <= anim.GetFloat("followRange"))
+        if (distanceToPlayer <= anim.GetFloat("followRange")) //follows player
         {
             agent.SetDestination(player.position);
             anim.SetBool("isWalking", true);

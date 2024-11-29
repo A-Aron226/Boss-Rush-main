@@ -22,7 +22,7 @@ public class MeleeAttack : StateMachineBehaviour
     {
         float playerDistance = Vector3.Distance(player.position, animator.transform.position);
 
-        if (animator.GetBool("isInMeleeRange"))
+        if (animator.GetBool("isInMeleeRange")) //referenced from melee sensor
         {
             agent.SetDestination(animator.transform.position);
         }

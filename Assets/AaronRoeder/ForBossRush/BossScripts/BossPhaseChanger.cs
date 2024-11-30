@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossPhaseChanger : MonoBehaviour
 {
-    private Animator anim;
+    [SerializeField] Animator anim;
+    [SerializeField] NavMeshAgent agent;
     private Damageable damage;
     private bool isNextPhase = false;
     private int maxHealth;
+    public float phaseDelay = 2.0f;
+    public MinionSpawner spawner;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
         damage = GetComponent<Damageable>();
 
         if (damage != null ) //grabbing events from damageable and listening to the events
@@ -32,7 +35,38 @@ public class BossPhaseChanger : MonoBehaviour
         {
             isNextPhase = true;
             anim.SetTrigger("phaseTwo");
+            
+            if (agent != null)
+            {
+                agent.isStopped = true;
+            }
+
+            StartCoroutine(WaitForPhaseTwo());
         }
+    }
+
+    IEnumerator WaitForPhaseTwo() //Timer to wait until transition animation finishes then waits a little after to begin phase two
+    {
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+
+        yield return new WaitForSeconds(phaseDelay);
+
+        PhaseTwoStart();
+    }
+
+    void PhaseTwoStart()
+    {
+        if (agent != null)
+        {
+            agent.isStopped = false;
+        }
+
+        if (spawner != null)
+        {
+            spawner.EnableSpawning();
+        }
+
+        anim.SetBool("isPhaseTwo", true);
     }
 
     private void OnDestroy()

@@ -5,9 +5,12 @@ using UnityEngine;
 public class DamagerVisibility : MonoBehaviour
 {
     [SerializeField] GameObject visibilityObject;
+    [SerializeField] GameObject p3VisibilityObject;
     [SerializeField] Animator anim;
     [SerializeField] string meleeName;
-    [SerializeField] float visibilityTime;
+    [SerializeField] string clawName;
+    private float visibilityTime;
+    private bool isFinalPhase = false;
 
     private void Start()
     {
@@ -24,11 +27,10 @@ public class DamagerVisibility : MonoBehaviour
             {
                 yield return new WaitForSeconds(visibilityTime);
                 visibilityObject.SetActive(true);
-                //Debug.Log("visible");
 
                 yield return new WaitForSeconds(0.1f);
                 visibilityObject.SetActive(false);
-                //Debug.Log("invisible");
+
 
                 while (anim.GetCurrentAnimatorStateInfo(0).IsName(meleeName))
                 {
@@ -36,7 +38,23 @@ public class DamagerVisibility : MonoBehaviour
                 }
             }
 
+            if (stateName.IsName(clawName))
+            {
+                p3VisibilityObject.SetActive(true);
+                Debug.Log("Visible");
+
+                yield return new WaitForSeconds(0.13f);
+                p3VisibilityObject.SetActive(false);
+                Debug.Log("Invisisble");
+            }
+
             yield return null;
         }
+    }
+
+    public void SetFinalPhase(bool value)
+    {
+        isFinalPhase = value;
+        Debug.Log("Final Phase set to: " + value);
     }
 }

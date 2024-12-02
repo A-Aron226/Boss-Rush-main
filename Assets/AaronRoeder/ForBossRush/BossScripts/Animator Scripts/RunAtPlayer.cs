@@ -20,7 +20,7 @@ public class RunAtPlayer : StateMachineBehaviour
         if (agent != null) //Sets the movement speed to a run speed
         {
             agent.speed *= speedMultiplier;
-            Debug.Log("Boss Speed set to: " + agent.speed);
+            Debug.Log("Boss Speed set to Running: " + agent.speed);
         }
     }
 
@@ -59,7 +59,7 @@ public class RunAtPlayer : StateMachineBehaviour
         if (agent != null) //Resets speed back to walking speed
         {
             agent.speed /= speedMultiplier;
-            Debug.Log("Boss speed has reset back to " + agent.speed);
+            Debug.Log("Boss speed has reset back to Normal: " + agent.speed);
         }
     }
 

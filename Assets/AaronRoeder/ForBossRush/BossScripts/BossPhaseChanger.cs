@@ -9,6 +9,7 @@ public class BossPhaseChanger : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     private Damageable damage;
     private bool isNextPhase = false;
+    private bool isFinalPhase = false;
     private int maxHealth;
     public float phaseDelay = 2.0f;
     public MinionSpawner spawner;
@@ -29,36 +30,61 @@ public class BossPhaseChanger : MonoBehaviour
     {
         maxHealth = startingHealth;
     }
-    public void PhaseChange(int damageAmount, int currentHealth) //Checking if boss health is less than 50% to start phase two animation
+    public void PhaseChange(int damageAmount, int currentHealth) 
     {
-        if(!isNextPhase && currentHealth <= maxHealth / 2)
+        if (currentHealth <= 0)
         {
-            isNextPhase = true;
-            anim.SetTrigger("phaseTwo");
-            
-            if (agent != null)
-            {
-                agent.isStopped = true;
-            }
-
-            StartCoroutine(WaitForPhaseTwo());
+            Debug.Log("Boss is dead"); //PlaceHolder to put in boss death animation
+            return;
         }
+
+        if(!isNextPhase && currentHealth > 0 && currentHealth <= maxHealth / 2) //Checking if boss health is less than 50% to start phase two animation
+        {
+            PhaseTwoTrigger();
+        }
+
+        else if (!isFinalPhase && currentHealth <= maxHealth / 3) //Checking if boss health is less than 25% to start phase three animation
+        {
+            PhaseThreeTrigger();
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void PhaseTwoTrigger()
+    {
+        isNextPhase = true;
+        anim.SetTrigger("phaseTwo");
+
+        if (agent != null)
+        {
+            agent.isStopped = true;
+        }
+
+        StartCoroutine(WaitForPhaseTwo());
     }
 
     IEnumerator WaitForPhaseTwo() //Timer to wait until transition animation finishes then waits a little after to begin phase two
     {
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        yield return null;
+        AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
 
-        yield return new WaitForSeconds(phaseDelay);
+        while(state.IsName("Phase Two Transition/Hit"))
+        {
+            yield return null;
+            state = anim.GetCurrentAnimatorStateInfo(0);
+        }
+
+        yield return new WaitForSeconds(state.length + phaseDelay);
 
         PhaseTwoStart();
     }
 
-    void PhaseTwoStart()
+    void PhaseTwoStart() //Activates the minion spawner
     {
         if (agent != null)
         {
             agent.isStopped = false;
+            agent.ResetPath();
         }
 
         if (spawner != null)
@@ -69,6 +95,56 @@ public class BossPhaseChanger : MonoBehaviour
         anim.SetBool("isPhaseTwo", true);
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    private void PhaseThreeTrigger()
+    {
+        isFinalPhase = true;
+        anim.SetTrigger("phaseThree");
+
+        if (agent != null)
+        {
+            agent.isStopped = true;
+        }
+
+        StartCoroutine(WaitForPhaseThree());
+    }
+
+    IEnumerator WaitForPhaseThree() //Timer to wait until transition animation finishes then waits a little after to begin phase three
+    {
+        yield return null;
+        AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+
+        while (state.IsName("Phase Three Transition/Hit"))
+        {
+            yield return null;
+            state = anim.GetCurrentAnimatorStateInfo(0);
+        }
+
+        yield return new WaitForSeconds(state.length + phaseDelay);
+
+        PhaseThreeStart();
+    }
+
+    void PhaseThreeStart()
+    {
+        if (agent != null)
+        {
+            agent.isStopped = false;
+            agent.ResetPath();
+        }
+
+        if (spawner != null)
+        {
+            spawner.spawnDelay = spawner.spawnDelay / 2;
+        }
+
+        anim.SetBool("isPhaseThree", true);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     private void OnDestroy()
     {
         if (damage != null) //Removes listeners once the phase change is done

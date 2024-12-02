@@ -29,6 +29,11 @@ public class DamagerVisibility : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 visibilityObject.SetActive(false);
                 //Debug.Log("invisible");
+
+                while (anim.GetCurrentAnimatorStateInfo(0).IsName(meleeName))
+                {
+                    yield return null;
+                }
             }
 
             yield return null;

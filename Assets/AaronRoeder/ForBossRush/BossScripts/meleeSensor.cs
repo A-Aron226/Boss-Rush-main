@@ -12,7 +12,6 @@ public class meleeSensor : MonoBehaviour
         if (((1 << other.gameObject.layer) & playerLayer) != 0)
         {
             anim.SetBool("isInMeleeRange", true);
-            Debug.Log("melee");
         }
     }
 
@@ -21,7 +20,6 @@ public class meleeSensor : MonoBehaviour
         if (((1 << other.gameObject.layer) & playerLayer) != 0)
         {
             anim.SetBool("isInMeleeRange", false);
-            Debug.Log("not melee");
         }
     }
 }

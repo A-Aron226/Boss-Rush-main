@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minion: {fileID: 4414871117303439921, guid: 5814662377a9e764bba0760805dd7cc6, type: 3}
   spawner: {fileID: 1861259880}
-  spawnDelay: 3
+  spawnDelay: 10
 --- !u!1 &1514649218
 GameObject:
   m_ObjectHideFlags: 0
@@ -3432,6 +3432,10 @@ PrefabInstance:
       propertyPath: OnSuccessfulHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1378800224}
+    - target: {fileID: 227382391609382362, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 242311663399911246, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
       propertyPath: m_Name
       value: DragonTerrorBringerMesh
@@ -3490,16 +3494,40 @@ PrefabInstance:
       objectReference: {fileID: 1378800224}
     - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
       propertyPath: maxHealth
-      value: 8
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
+      propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
       propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1747053146}
     - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
+      propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1509295927}
+    - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1747053146}
+    - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
+      propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
+      propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Initializing
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
+      propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: BossPhaseChanger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
+      propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

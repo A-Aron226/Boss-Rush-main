@@ -6,7 +6,7 @@ public class MinionSpawner : MonoBehaviour
 {
     [SerializeField] GameObject minion;
     [SerializeField] BoxCollider spawner;
-    [SerializeField] float spawnDelay = 3.0f;
+    public float spawnDelay = 3.0f;
     private bool startSpawining = false;
 
     // Start is called before the first frame update

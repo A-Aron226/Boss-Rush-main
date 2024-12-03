@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class RunAtPlayer : StateMachineBehaviour
 {
-    [SerializeField] float speedMultiplier = 2.0f;
+    [SerializeField] float speedMultiplier = 1.5f;
     Transform player;
     private NavMeshAgent agent;
     private Animator anim;
@@ -20,7 +20,8 @@ public class RunAtPlayer : StateMachineBehaviour
         if (agent != null) //Sets the movement speed to a run speed
         {
             agent.speed *= speedMultiplier;
-            Debug.Log("Boss Speed set to Running: " + agent.speed);
+            agent.isStopped = false;
+            //Debug.Log("Boss Speed set to Running: " + agent.speed);
         }
     }
 
@@ -33,24 +34,29 @@ public class RunAtPlayer : StateMachineBehaviour
         {
             agent.SetDestination(player.position);
             anim.SetBool("isWalking", true);
-            Debug.Log("Following Player");
+            //Debug.Log("Following Player");
+
+            //Attempting to make the boss face the player
+            Vector3 direction = (player.position - animator.transform.position).normalized;
+            Quaternion look = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            animator.transform.rotation = Quaternion.Slerp(animator.transform.rotation, look, Time.deltaTime * agent.angularSpeed);
         }
 
         else if (distanceToPlayer <= anim.GetFloat("minRange") || distanceToPlayer > anim.GetFloat("followRange"))
         {
             anim.SetBool("isWalking", false);
             agent.SetDestination(animator.transform.position);
-            Debug.Log("Player out of range, boss going idle");
+            //Debug.Log("Player out of range, boss going idle");
         }
 
         else
         {
             anim.SetBool("isWalking", false);
-            Debug.Log("Idle State, boss unable to move");
+            //Debug.Log("Idle State, boss unable to move");
         }
 
         anim.SetFloat("speed", agent.velocity.magnitude);
-        Debug.Log("Animator speed set to: " + agent.velocity.magnitude);
+        //Debug.Log("Animator speed set to: " + agent.velocity.magnitude);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -59,7 +65,7 @@ public class RunAtPlayer : StateMachineBehaviour
         if (agent != null) //Resets speed back to walking speed
         {
             agent.speed /= speedMultiplier;
-            Debug.Log("Boss speed has reset back to Normal: " + agent.speed);
+            //Debug.Log("Boss speed has reset back to Normal: " + agent.speed);
         }
     }
 

@@ -20,12 +20,23 @@ public class FollowPlayer : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
+        /*if (anim.GetBool("isPhaseTwo") || anim.GetBool("isFinalPhase"))
+        {
+            return;
+        }*/
+
         float distanceToPlayer = Vector3.Distance(player.position, animator.transform.position);
 
         if (distanceToPlayer <= anim.GetFloat("followRange")) //follows player
         {
             agent.SetDestination(player.position);
             anim.SetBool("isWalking", true);
+
+            //An Attempt for the boss to look at the player
+            Vector3 direction = (player.position - animator.transform.position).normalized;
+            Quaternion look = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            animator.transform.rotation = Quaternion.Slerp(animator.transform.rotation, look, Time.deltaTime * agent.angularSpeed);
         }
 
         else if (distanceToPlayer <= anim.GetFloat("minRange") || distanceToPlayer > anim.GetFloat("followRange"))

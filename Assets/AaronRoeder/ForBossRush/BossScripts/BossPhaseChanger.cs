@@ -32,20 +32,28 @@ public class BossPhaseChanger : MonoBehaviour
     }
     public void PhaseChange(int damageAmount, int currentHealth) 
     {
+        Debug.Log("PhaseChange with current health: " + currentHealth);
+
         if (currentHealth <= 0)
         {
             Debug.Log("Boss is dead"); //PlaceHolder to put in boss death animation
             return;
         }
 
-        if(!isNextPhase && currentHealth > 0 && currentHealth <= maxHealth / 2) //Checking if boss health is less than 50% to start phase two animation
+        if(!isNextPhase && currentHealth <= maxHealth / 2) //Checking if boss health is less than 50% to start phase two animation
         {
-            PhaseTwoTrigger();
+            if (!anim.GetBool("isPhaseTwo"))
+            {
+                PhaseTwoTrigger();
+            }
         }
 
         else if (!isFinalPhase && currentHealth <= maxHealth / 3) //Checking if boss health is less than 25% to start phase three animation
         {
-            PhaseThreeTrigger();
+            if (!anim.GetBool("isFinalPhase"))
+            {
+                PhaseThreeTrigger();
+            }
         }
     }
 
@@ -54,6 +62,7 @@ public class BossPhaseChanger : MonoBehaviour
     {
         isNextPhase = true;
         anim.SetTrigger("phaseTwo");
+        Debug.Log("Phase two triggered");
 
         if (agent != null)
         {
@@ -68,7 +77,7 @@ public class BossPhaseChanger : MonoBehaviour
         yield return null;
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
 
-        while(state.IsName("Phase Two Transition/Hit"))
+        while(state.IsName("Hit"))
         {
             yield return null;
             state = anim.GetCurrentAnimatorStateInfo(0);
@@ -93,6 +102,7 @@ public class BossPhaseChanger : MonoBehaviour
         }
 
         anim.SetBool("isPhaseTwo", true);
+        Debug.Log("Phase two started");
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -107,7 +117,6 @@ public class BossPhaseChanger : MonoBehaviour
         if (agent != null)
         {
             agent.isStopped = true;
-            Debug.Log("Boss stopped");
         }
 
         StartCoroutine(WaitForPhaseThree());
@@ -118,7 +127,7 @@ public class BossPhaseChanger : MonoBehaviour
         yield return null;
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
 
-        while (!state.IsName("Phase Three Transition/Hit"))
+        while (state.IsName("Hit"))
         {
             Debug.Log("Current State: " + anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
             yield return null;
@@ -160,7 +169,7 @@ public class BossPhaseChanger : MonoBehaviour
     
     private void OnDestroy()
     {
-        if (damage != null) //Removes listeners once the phase change is done
+        if (damage != null) //Removes listeners
         {
             damage.OnHealthChanged.RemoveListener(PhaseChange);
             damage.OnInitialize.RemoveListener(Initializing);

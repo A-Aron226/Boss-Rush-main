@@ -28,6 +28,10 @@ public class MinionFollow : StateMachineBehaviour
             agent.SetDestination(player.position);
             anim.SetBool("isWalking", true);
             anim.SetBool("isIdle", false);
+
+            Vector3 direction = (player.position - animator.transform.position).normalized;
+            Quaternion look = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            animator.transform.rotation = Quaternion.Slerp(animator.transform.rotation, look, Time.deltaTime * agent.angularSpeed);
         }
 
         else

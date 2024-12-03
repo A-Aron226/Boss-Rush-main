@@ -3355,7 +3355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6349310927231307411, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7595604080369174816, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
       propertyPath: clawName
@@ -3367,7 +3367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
       propertyPath: maxHealth
-      value: 24
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8015764069020278990, guid: 49ab379983cb566488fb418f376d12bb, type: 3}
       propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[0].m_Target

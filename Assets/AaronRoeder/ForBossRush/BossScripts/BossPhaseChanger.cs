@@ -34,12 +34,6 @@ public class BossPhaseChanger : MonoBehaviour
     {
         Debug.Log("PhaseChange with current health: " + currentHealth);
 
-        if (currentHealth <= 0)
-        {
-            Debug.Log("Boss is dead"); //PlaceHolder to put in boss death animation
-            return;
-        }
-
         if(!isNextPhase && currentHealth <= maxHealth / 2) //Checking if boss health is less than 50% to start phase two animation
         {
             if (!anim.GetBool("isPhaseTwo"))
@@ -101,6 +95,7 @@ public class BossPhaseChanger : MonoBehaviour
             spawner.EnableSpawning();
         }
 
+        anim.SetBool("isPhaseOne", false);
         anim.SetBool("isPhaseTwo", true);
         Debug.Log("Phase two started");
     }
@@ -112,7 +107,7 @@ public class BossPhaseChanger : MonoBehaviour
     {
         isFinalPhase = true;
         anim.SetTrigger("phaseThree");
-        Debug.Log("Phase 3 trigger set");
+        //Debug.Log("Phase 3 trigger set");
 
         if (agent != null)
         {
@@ -127,14 +122,14 @@ public class BossPhaseChanger : MonoBehaviour
         yield return null;
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
 
-        while (state.IsName("Hit"))
+        while (!state.IsName("Hit"))
         {
             Debug.Log("Current State: " + anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
             yield return null;
             state = anim.GetCurrentAnimatorStateInfo(0);
         }
 
-        Debug.Log("Phase 3 transition playing");
+        //Debug.Log("Phase 3 transition playing");
 
         yield return new WaitForSeconds(state.length + phaseDelay);
 
@@ -147,7 +142,7 @@ public class BossPhaseChanger : MonoBehaviour
         {
             agent.isStopped = false;
             agent.ResetPath();
-            Debug.Log("Boss resuming movement");
+            //Debug.Log("Boss resuming movement");
         }
 
         if (spawner != null)
@@ -155,8 +150,9 @@ public class BossPhaseChanger : MonoBehaviour
             spawner.spawnDelay = spawner.spawnDelay / 2;
         }
 
+        anim.SetBool("isPhaseTwo", false);
         anim.SetBool("isFinalPhase", true);
-        Debug.Log("Phase 3 started");
+        //Debug.Log("Phase 3 started");
 
         var damagerVisibility = GetComponent<DamagerVisibility>();
         if (damagerVisibility != null)

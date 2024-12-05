@@ -21,6 +21,11 @@ public class MinionSpawner : MonoBehaviour
         StartCoroutine(MinionSpawn());
     }
 
+    public void StopSpawning()
+    {
+        startSpawining = false;
+    }
+
     IEnumerator MinionSpawn()
     {
         while (startSpawining)

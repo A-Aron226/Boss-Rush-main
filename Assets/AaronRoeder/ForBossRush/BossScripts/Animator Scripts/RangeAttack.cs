@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using AaronRoeder;
+using System.Threading;
 
 public class RangeAttack : StateMachineBehaviour
 {
@@ -17,6 +19,7 @@ public class RangeAttack : StateMachineBehaviour
     //public float fireRate = 1.5f;
     public float spawnDelay = 0.5f; //delay timer for fireball
     private bool hasSpawned = false;
+    private float spawnTimer;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -26,18 +29,19 @@ public class RangeAttack : StateMachineBehaviour
         anim = animator;
 
         fireball = GameObject.Find(fireballName); //Looks for a game object in hierarchy with string name
-        /*if (fireball == null)
+        if (fireball == null)
         {
             Debug.Log("Fireball Object not found");
-        }*/
+        }
 
         head = FindChildHead(animator.transform, headName); //Looks for head in hierarchy with string name using recursive function
-        /*if (head == null)
+        if (head == null)
         {
             Debug.Log("Head object not found");
-        }*/
+        }
 
         anim.SetFloat("spawnDelay", spawnDelay);
+        spawnTimer = 0f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -53,12 +57,19 @@ public class RangeAttack : StateMachineBehaviour
         else
         {
             anim.SetBool("canShoot", true);
+            spawnTimer += Time.deltaTime;
 
-            if (!hasSpawned && stateInfo.normalizedTime >= spawnDelay && stateInfo.normalizedTime < 1.0f)
+            if(spawnTimer >= spawnDelay)
+            {
+                Projectile(anim);
+                spawnTimer = 0f;
+            }
+
+            /*if (!hasSpawned && stateInfo.normalizedTime >= spawnDelay && stateInfo.normalizedTime < 1.0f)
             {
                 Projectile(anim);
                 hasSpawned = true;
-            }
+            }*/
 
             /*if (Time.time >= fireTime)
             {
@@ -74,10 +85,11 @@ public class RangeAttack : StateMachineBehaviour
     {
         if (fireball != null && head != null)
         {
-            Instantiate(fireball, head.position, head.rotation);
+            GameObject fireballCopy = Instantiate(fireball, head.position, head.rotation);
+            fireballCopy.SetActive(true);
         }
 
-        /*else
+        else
         {
             if (fireball == null)
             {
@@ -88,7 +100,7 @@ public class RangeAttack : StateMachineBehaviour
             {
                 Debug.Log("Head is null!");
             }
-        }*/
+        }
         
     }
 
@@ -115,6 +127,7 @@ public class RangeAttack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         anim.SetFloat("spawnDelay", 0);
+        hasSpawned = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

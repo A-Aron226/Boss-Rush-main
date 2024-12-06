@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using AaronRoeder;
 
 public class BossPhaseChanger : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class BossPhaseChanger : MonoBehaviour
     }
     public void PhaseChange(int damageAmount, int currentHealth) 
     {
-        Debug.Log("PhaseChange with current health: " + currentHealth);
+        //Debug.Log("PhaseChange with current health: " + currentHealth);
 
         if(!isNextPhase && currentHealth <= maxHealth / 2) //Checking if boss health is less than 50% to start phase two animation
         {
@@ -56,7 +57,7 @@ public class BossPhaseChanger : MonoBehaviour
     {
         isNextPhase = true;
         anim.SetTrigger("phaseTwo");
-        Debug.Log("Phase two triggered");
+        //Debug.Log("Phase two triggered");
 
         if (agent != null)
         {
@@ -97,7 +98,7 @@ public class BossPhaseChanger : MonoBehaviour
 
         anim.SetBool("isPhaseOne", false);
         anim.SetBool("isPhaseTwo", true);
-        Debug.Log("Phase two started");
+        //Debug.Log("Phase two started");
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,7 +125,7 @@ public class BossPhaseChanger : MonoBehaviour
 
         while (!state.IsName("Hit"))
         {
-            Debug.Log("Current State: " + anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+            //Debug.Log("Current State: " + anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
             yield return null;
             state = anim.GetCurrentAnimatorStateInfo(0);
         }

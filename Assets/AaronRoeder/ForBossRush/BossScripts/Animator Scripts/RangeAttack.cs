@@ -18,15 +18,30 @@ public class RangeAttack : StateMachineBehaviour
     //private float fireTime = 0f;
     //public float fireRate = 1.5f;
     public float spawnDelay = 0.5f; //delay timer for fireball
-    private bool hasSpawned = false;
+    //private bool hasSpawned = false;
     private float spawnTimer;
+    [SerializeField] LayerMask playerLayer;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = GameObject.FindWithTag("Player").transform;
+        //player = GameObject.FindWithTag("Player").transform;
         agent = animator.GetComponent<NavMeshAgent>();
         anim = animator;
+
+        Collider[] hitCol = Physics.OverlapSphere(animator.transform.position, 100f, playerLayer);
+
+        if (hitCol.Length > 0)
+        {
+            player = hitCol[0].transform;
+        }
+
+        else
+        {
+            Debug.Log("Player Object not found!");
+        }
+
+
 
         fireball = GameObject.Find(fireballName); //Looks for a game object in hierarchy with string name
         if (fireball == null)
@@ -127,7 +142,6 @@ public class RangeAttack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         anim.SetFloat("spawnDelay", 0);
-        hasSpawned = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

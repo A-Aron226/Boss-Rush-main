@@ -10,13 +10,25 @@ namespace AaronRoeder
         Transform player;
         private NavMeshAgent agent;
         private Animator anim;
+        [SerializeField] LayerMask playerLayer;
 
         //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             agent = animator.GetComponent<NavMeshAgent>();
             anim = animator;
-            player = GameObject.FindWithTag("Player").transform;
+            //player = GameObject.FindWithTag("Player").transform;
+            Collider[] hitCol = Physics.OverlapSphere(animator.transform.position, 100f, playerLayer);
+
+            if (hitCol.Length > 0 )
+            {
+                player = hitCol[0].transform;
+            }
+
+            else
+            {
+                Debug.Log("Player Object not found!");
+            }
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

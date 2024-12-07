@@ -9,6 +9,7 @@ public class FireballMovement : MonoBehaviour
     [SerializeField] float lifeSpan = 5f;
     private bool isSpawned = false; //This is to ensure that the Original Fireball does not desawpn from hierarchy
     private Transform player;
+    [SerializeField] LayerMask playerLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,17 @@ public class FireballMovement : MonoBehaviour
             }
         }
 
-        player = GameObject.FindWithTag("Player").transform;
+        //player = GameObject.FindWithTag("Player").transform;
+        Collider[] hitCol = Physics.OverlapSphere(transform.position, 100f, playerLayer); //Finding the player layer
+        if (hitCol.Length > 0 )
+        {
+            player = hitCol[0].transform;
+        }
+
+        else
+        {
+            Debug.Log("Player Object not found!");
+        }
     }
 
     // Update is called once per frame

@@ -57,6 +57,9 @@ MonoBehaviour:
   fireballName: Fireball
   headName: Head
   spawnDelay: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &-7276741434575503708
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -138,6 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bba9b535f1452b44a8285935d6e8836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &-6902465068962482582
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -430,6 +436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e152e116a8b20374ea8f71ec928c2949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1102 &-4564868241000511889
 AnimatorState:
   serializedVersion: 6
@@ -471,6 +480,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &-4450827482596539991
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -592,6 +604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e152e116a8b20374ea8f71ec928c2949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &-3204826543259950673
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -635,6 +650,9 @@ MonoBehaviour:
   fireballName: Fireball
   headName: Head
   spawnDelay: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1102 &-3002281843601082038
 AnimatorState:
   serializedVersion: 6
@@ -744,6 +762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bba9b535f1452b44a8285935d6e8836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &-2124113178430925724
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1063,13 +1084,13 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: minRange
     m_Type: 1
-    m_DefaultFloat: 1
+    m_DefaultFloat: 0.5
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: followRange
     m_Type: 1
-    m_DefaultFloat: 14
+    m_DefaultFloat: 12
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -1287,6 +1308,9 @@ MonoBehaviour:
   fireballName: Fireball
   headName: Head
   spawnDelay: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &1293563072168228953
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1375,6 +1399,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &1960656095121080792
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1735,6 +1762,9 @@ MonoBehaviour:
   fireballName: Fireball
   headName: Head
   spawnDelay: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &3214059584200039073
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1865,6 +1895,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e152e116a8b20374ea8f71ec928c2949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &4608439634587489973
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1933,6 +1966,9 @@ MonoBehaviour:
   fireballName: Fireball
   headName: Head
   spawnDelay: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &4930959165901209064
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1992,6 +2028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bba9b535f1452b44a8285935d6e8836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &5442527796318196475
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -2041,6 +2080,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e152e116a8b20374ea8f71ec928c2949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &6524692028498779191
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -2364,3 +2406,6 @@ MonoBehaviour:
   fireballName: Fireball
   headName: Head
   spawnDelay: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64

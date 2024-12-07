@@ -94,6 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f05f55e45c09046978190c51492c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &-5252055851059756994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,6 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f05f55e45c09046978190c51492c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1101 &-4056144599196892792
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -368,6 +374,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bba9b535f1452b44a8285935d6e8836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1107 &9221317324754777784
 AnimatorStateMachine:
   serializedVersion: 6

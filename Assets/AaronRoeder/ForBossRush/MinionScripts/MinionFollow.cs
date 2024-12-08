@@ -16,7 +16,7 @@ public class MinionFollow : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         anim = animator;
         //player = GameObject.FindWithTag("Player").transform;
-        Collider[] hitCol = Physics.OverlapSphere(animator.transform.position, 100f, playerLayer);
+        Collider[] hitCol = Physics.OverlapSphere(animator.transform.position, 300f, playerLayer);
 
         if (hitCol.Length > 0)
         {

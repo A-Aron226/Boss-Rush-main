@@ -26,7 +26,7 @@ public class RunAtPlayer : StateMachineBehaviour
             //Debug.Log("Boss Speed set to Running: " + agent.speed);
         }
 
-        Collider[] hitCol = Physics.OverlapSphere(animator.transform.position, 100f, playerLayer);
+        Collider[] hitCol = Physics.OverlapSphere(animator.transform.position, 300f, playerLayer);
 
         if (hitCol.Length > 0)
         {

@@ -2581,6 +2581,7 @@ GameObject:
   - component: {fileID: 7702505582325369987}
   - component: {fileID: 8823398002509138912}
   - component: {fileID: 2798307235082315611}
+  - component: {fileID: 2984144469824553784}
   m_Layer: 7
   m_Name: DragonTerrorBringerMesh
   m_TagString: Untagged
@@ -2682,6 +2683,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 242311663392640140}
   spawner: {fileID: 8823398002509138912}
+--- !u!114 &2984144469824553784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242311663399911246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463124c1968a26a4b841eed6f1f514ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 6355012266156503808}
+  sense: {fileID: 2356711872015633459}
+  spawner: {fileID: 7401177629470513473}
+  desapwnDelay: 6
 --- !u!1 &242311663399911248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3124,7 +3141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb936639cdd91de4b9956f37ee2ea8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 50
   iTime: 0.5
   flashMaterial: {fileID: 2100000, guid: f5d1bfc06b2ce4644887e95626d9ef26, type: 2}
   renderers:
@@ -3164,7 +3181,19 @@ MonoBehaviour:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2984144469824553784}
+        m_TargetAssemblyTypeName: BossDie, Assembly-CSharp
+        m_MethodName: HandleDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3517,7 +3546,7 @@ MonoBehaviour:
   p3VisibilityObject: {fileID: 6349310927231307411}
   anim: {fileID: 242311663392640140}
   meleeName: Melee
-  visibilityTime: 0.3
+  clawName: Claw
 --- !u!1 &3743352213738291930
 GameObject:
   m_ObjectHideFlags: 0
@@ -3652,8 +3681,8 @@ Transform:
   m_GameObject: {fileID: 6349310927231307411}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 4.48}
-  m_LocalScale: {x: 2.2761, y: 1.8993, z: 7.5408406}
+  m_LocalPosition: {x: 0, y: 1.2, z: 3.5}
+  m_LocalScale: {x: 2.2761, y: 1.8993, z: 6.4355044}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 242311663400067950}
@@ -3673,7 +3702,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6349310927231307411}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3918,6 +3947,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   lifeSpan: 5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &8217910085595678411
 GameObject:
   m_ObjectHideFlags: 0

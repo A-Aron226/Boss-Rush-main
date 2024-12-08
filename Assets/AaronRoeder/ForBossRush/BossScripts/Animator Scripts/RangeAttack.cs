@@ -29,7 +29,7 @@ public class RangeAttack : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         anim = animator;
 
-        Collider[] hitCol = Physics.OverlapSphere(animator.transform.position, 100f, playerLayer);
+        Collider[] hitCol = Physics.OverlapSphere(animator.transform.position, 300f, playerLayer);
 
         if (hitCol.Length > 0)
         {
